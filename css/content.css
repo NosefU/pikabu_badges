@@ -1,0 +1,274 @@
+:root {
+	  --badge-color-light-gray: #f9f9fb;
+	  --badge-color-gray: #e9e9e9;
+	  --badge-color-dark-gray: #757575;
+	  --badge-color-black: #65686b;
+	  --badge-color-blue: #64b5f6;
+	  --badge-color-red:  #d58070;
+	  --badge-color-green: #8ac858;
+	  --badge-color-yellow: #d8ff00;
+	  --badge-border-radius: 4px;
+	}
+
+/* --- filled badges --- */
+.badge {
+	margin-left: 0;
+	margin-top: 4px;
+	margin-right: 4px;
+    border-radius: var(--badge-border-radius);
+	border-style: solid;
+	border-width: 1px;
+    line-height: 20px;
+	padding: calc(0.2em - 2px) calc(0.65em - 1px) calc(0.2em - 2px) calc(0.65em - 2px);
+	font-weight: 500;
+    text-align: center;
+	font-size: .75em;
+    white-space: nowrap;
+	align-self: baseline;
+
+	/* Для всплывающей кнопки удаления	*/
+	/*position: relative;*/
+	/*display: inline-block;*/
+}
+
+.badge-text {
+	white-space: break-spaces;
+}
+
+.badge-light-gray {
+	color: var(--badge-color-dark-gray);
+	background-color: var(--badge-color-light-gray);
+	border-color: var(--badge-color-gray);
+}
+
+.badge-blue {
+    color: var(--badge-color-light-gray);
+    background-color: var(--badge-color-blue);
+    border-color: var(--badge-color-blue);
+}
+
+.badge-red {
+	color: white;
+	background-color: var(--badge-color-red);
+	border-color: var(--badge-color-red);
+}
+
+.badge-green {
+    color: white;
+    background-color: var(--badge-color-green);
+	border-color: var(--badge-color-green);
+}
+
+.badge-yellow {
+	color: var(--badge-color-dark-gray);
+	background-color: var(--badge-color-yellow);
+	border-color: var(--badge-color-yellow);
+}
+
+.badge-gray {
+	color: var(--badge-color-light-gray);
+	background-color: var(--badge-color-black);
+	border-color: var(--badge-color-black);
+}
+
+/* --- outline badges --- */
+
+.badge-light-gray-outline {
+	color: var(--badge-color-dark-gray);
+	background-color:transparent;
+	border-color: var(--badge-color-gray);
+	border-width: 1px;
+}
+
+.badge-blue-outline {
+	color: var(--badge-color-blue);
+	background-color: transparent;
+	border-color: var(--badge-color-blue);
+	border-width: 1px;
+
+}
+
+.badge-red-outline {
+	color: var(--badge-color-red);
+	background-color:  transparent;
+	border-color: var(--badge-color-red);
+    border-width: 1px;
+}
+
+.badge-green-outline {
+    color: var(--badge-color-green);
+    background-color: transparent;
+	border-color: var(--badge-color-green);
+    border-width: 1px;
+}
+
+
+.badge-yellow-outline {
+	color: var(--badge-color-yellow);
+	background-color:  transparent;
+	border-color: var(--badge-color-yellow);
+    border-width: 1px;
+}
+
+.badge-gray-outline {
+	color: var(--badge-color-black);
+	background-color: transparent;
+	border-color:  var(--badge-color-black);
+    border-width: 1px;
+}
+
+
+.badges-panel {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: -4px;
+}
+
+.story__user-info > .badges-panel {
+	/* в заголовке поста бейджи могли схлопываться в две строки,
+	если в заголовке есть метка сообщества. Фикс */
+	display: contents;
+}
+.story__user-info > .badges-panel > .badge {
+	/* в заголовке поста бейджи из-за их стандартного марджина съезжают вниз. Фикс */
+	margin-top: 0;
+}
+
+
+
+.story__header > .badges-panel {
+	/* бейджи под заголовком поста */
+	margin-top: -12px;
+	margin-bottom: 12px;
+}
+
+.comment__body > .badges-panel {
+	/* бейджи под заголовком коммента */
+	margin-top: -8px;
+}
+
+.comment__header >  .badges-panel {
+	/* бейджи в заголовке коммента */
+	margin-left: 4px;
+}
+
+.profile__user > .badges-panel {
+	margin-top: 2px;
+
+}
+
+
+div.popup__content > div > div.profile__user > div.profile__nick-wrap > div.badges-panel {
+	/* блок бейджей на всплывающей панели */
+	margin-top: -4px;
+	padding-right: 36px;
+}
+
+div.popup__content > div > div.profile__user > div.profile__nick-wrap > div.badges-panel > .badge {
+	/* бейдж на всплывающей панели */
+	margin-top: 4px;
+}
+
+
+.hide {
+
+	visibility: hidden;
+	background-color: inherit;
+	border-color: inherit;
+	color: inherit;
+	text-align: center;
+	padding: inherit;
+	padding-left: calc(0.65em - 1px);
+	margin-top: -1px;
+	border-width: inherit;
+	border-left-width: 0;
+	border-radius: inherit;
+	border-style: inherit;
+	box-shadow: 4px 1px 0 0 var(--color-bright-800), 4px -1px 0 0 var(--color-bright-800);
+	position: absolute;
+	z-index: 1;
+}
+
+.badge:hover > .hide {
+	visibility: visible;
+}
+
+
+.badge_color_selector {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+	margin-top: -1px;
+}
+
+.badge_color_selector > .badge {
+	margin-top: 0;
+}
+
+.badge_color_selector > button.badge {
+	height: 30px;
+	/*width: 45px;*/
+	width: calc(100% / 6);
+	margin-right: 0;
+	margin-left: 0;
+	border-radius: 0;
+}
+
+.badge_color_selector > button.badge:first-child {
+	border-bottom-left-radius: var(--badge-border-radius);
+}
+
+.badge_color_selector > button.badge:last-child {
+	border-bottom-right-radius: var(--badge-border-radius);
+}
+
+input.badge {
+	width: 88%;
+	margin-left: 0;
+	border-radius: var(--badge-border-radius) 0 0 0;
+	height: 30px;
+	margin-right: 0;
+	text-align: start;
+	border-right-width: 0;
+}
+
+input.badge::placeholder {
+	font-weight: 500;
+	font-size: 1em;
+}
+
+.badge-blue::placeholder,
+.badge-gray::placeholder {
+	color: var(--badge-color-light-gray);
+}
+
+.badge-red::placeholder,
+.badge-green::placeholder {
+	color: white;
+}
+
+.badge-light-gray::placeholder,
+.badge-yellow::placeholder {
+	color: var(--badge-color-dark-gray);
+}
+
+
+.add-badge-button {
+	width: 12%;
+	border-radius: 0 var(--badge-border-radius) 0 0;
+	height: 30px;
+	padding-right: 16px;
+	margin: 0;
+	font-size: 1.2em;
+	text-align: right;
+	border-left-width: 0;
+}
+
+.add-badge-button > i {
+	vertical-align: middle;
+}
+
+
+.badge-light-gray-outline.add-badge-button {
+	color: #bdbdbf;
+}
