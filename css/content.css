@@ -7,7 +7,7 @@
 	  --badge-color-red:  #d58070;
 	  --badge-color-green: #8ac858;
 	  --badge-color-yellow: #d8ff00;
-	  --badge-border-radius: 4px;
+	  --badge-border-radius: 2px;
 	}
 
 /* --- filled badges --- */
@@ -25,10 +25,6 @@
 	font-size: .75em;
     white-space: nowrap;
 	align-self: baseline;
-
-	/* Для всплывающей кнопки удаления	*/
-	/*position: relative;*/
-	/*display: inline-block;*/
 }
 
 .badge-text {
@@ -102,7 +98,6 @@
     border-width: 1px;
 }
 
-
 .badge-yellow-outline {
 	color: var(--badge-color-yellow);
 	background-color:  transparent;
@@ -134,8 +129,6 @@
 	margin-top: 0;
 }
 
-
-
 .story__header > .badges-panel {
 	/* бейджи под заголовком поста */
 	margin-top: -12px;
@@ -157,7 +150,6 @@
 
 }
 
-
 div.popup__content > div > div.profile__user > div.profile__nick-wrap > div.badges-panel {
 	/* блок бейджей на всплывающей панели */
 	margin-top: -4px;
@@ -171,7 +163,8 @@ div.popup__content > div > div.profile__user > div.profile__nick-wrap > div.badg
 
 
 .hide {
-
+	/* Скрывающаяся кнопка удаления бейджа,
+	появляющаяся при наведении на бейдж */
 	visibility: hidden;
 	background-color: inherit;
 	border-color: inherit;
@@ -193,6 +186,7 @@ div.popup__content > div > div.profile__user > div.profile__nick-wrap > div.badg
 	visibility: visible;
 }
 
+/* --- панель создания бейджей --- */
 
 .badge_color_selector {
 	display: flex;
@@ -207,7 +201,6 @@ div.popup__content > div > div.profile__user > div.profile__nick-wrap > div.badg
 
 .badge_color_selector > button.badge {
 	height: 30px;
-	/*width: 45px;*/
 	width: calc(100% / 6);
 	margin-right: 0;
 	margin-left: 0;
@@ -252,7 +245,6 @@ input.badge::placeholder {
 	color: var(--badge-color-dark-gray);
 }
 
-
 .add-badge-button {
 	width: 12%;
 	border-radius: 0 var(--badge-border-radius) 0 0;
@@ -267,7 +259,6 @@ input.badge::placeholder {
 .add-badge-button > i {
 	vertical-align: middle;
 }
-
 
 .badge-light-gray-outline.add-badge-button {
 	color: #bdbdbf;

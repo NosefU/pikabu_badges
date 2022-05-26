@@ -1,4 +1,10 @@
-import {Badge} from "./badges_functions.js";
+import Badge from "./badge.js";
+
+// TODO возможно стоит реализовать фабрику,
+//  которая принимает userId и возвращает готовый список бейджей
+
+// TODO также возможно стоит геттер dto заменить на полноценный метод save()
+
 
 export default class BadgesList {
   /**
@@ -24,23 +30,22 @@ export default class BadgesList {
     let badgeIndex = this.items.findIndex( (badge) => {
       return badge.uuid === badgeUUID;
     });
-    if (badgeIndex !== -1) {
-      this.items.splice(badgeIndex, 1);
-    }
+
+    if (badgeIndex !== -1) this.items.splice(badgeIndex, 1);
   }
 
-
+  // работает аналогично Array.prototype.unshift()
   unshift(...newItems) {
     // TODO проверять наличие полей у объектов
     for (let item of newItems) {
       if (!(item instanceof Badge)) {
-        throw item + "is not Badge object"
+        throw item + " is not Badge object"
       }
     }
     return this.items.unshift(...newItems);
   }
 
-
+ // работает аналогично Array.prototype.push()
   push(...newItems) {
     // TODO проверять наличие полей у объектов
     for (let item of newItems) {
@@ -61,14 +66,14 @@ export default class BadgesList {
   }
 
 
+  /**
+   * Формирует ноду с бейджами пользователя
+   * @returns {HTMLDivElement}
+   */
   get node() {
     let badgesPanel = document.createElement("div");
     badgesPanel.classList.add("badges-panel");
     badgesPanel.dataset.belongsTo = this.userId;
-
-    if (this.items.length === 0) {
-      return badgesPanel;
-    }
 
     for (let badge of this.items){
       badgesPanel.appendChild(badge.node);

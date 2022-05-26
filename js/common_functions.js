@@ -1,5 +1,3 @@
-import {Badge} from "./badges_functions.js";
-
 export function generateUUID() { // Public Domain/MIT
   let d = new Date().getTime();   //Timestamp
   let d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
@@ -27,53 +25,31 @@ export function getUserId(userNode) {
     return userNode.dataset.id ?? userNode.dataset.userId ?? null;
   }
   catch (err) {
-    if (err.name === 'TypeeError'){
+    if (err.name === 'TypeError') {
       return null;
     }
     throw err;
   }
+}
 
-  // // если нода - заголовок профиля
-  // if (userNode.classList.contains("profile__nick-wrap") || userNode.classList.contains("profile__user")) {
-  //   let usernameNodes = userNode.getElementsByClassName("profile__nick");
-  //
-  //   return usernameNodes[0].textContent.trim();
-  // }
-  //
-  // //если нода - заголовок поста
-  // if (userNode.nodeName === "A") {
-  //   return userNode.getAttribute("data-name");
-  // }
-  //
-  // // если нода - заголовок коммента
-  // if (userNode.nodeName === "SPAN" ) {
-  //   return userNode.textContent.trim();
-  // }
-  //
-  // return null;
+
+/**
+ * Собирает из переданной ноды все ноды, принадлежащие пользователю
+ * @param 							 node						нода, в которой производится поиск
+ * @param {String, null} userIdFilter имя искомого пользователя
+ * @returns {*[]}                       массив найденных нод. Если задан userIdFilter, то ноды фильтруются по юзернейму
+ */
+export function getUserNodes(node, userIdFilter = null) {
+  let userNickNodes = node.querySelectorAll(".user__nick[data-profile=\"true\"], .comment__user[data-profile=\"true\"]");
+  let userProfileNodes = node.querySelectorAll(".profile[data-user-id]");
+  let allNodes = [...userNickNodes].concat(...userProfileNodes);
+
+  if (!userIdFilter) return allNodes;
+  else return allNodes.filter(node => getUserId(node) === userIdFilter);
 }
 
 
 export function initStorage() {
-
-  // let userId = "Soldatudaci";
-  // let grayBadge = new Badge(userId, "бейдж серый", "gray", generateUUID());
-  // let yellowBadge = new Badge(userId, "бейдж желтый", "yellow", generateUUID());
-  // let greenBadge = new Badge(userId, "бейдж зелёный","green", generateUUID());
-  // let redBadge = new Badge(userId, "бейдж красный", "red", generateUUID());
-  // let zBadge = new Badge(userId, "Z", "red", generateUUID());
-  // let blueBadge = new Badge(userId, "бейдж голубой", "blue", generateUUID());
-  // let stdBadge = new Badge(userId, "стандартный бейдж", null, generateUUID());
-  //
-  //
-  // let badgesList = [grayBadge, yellowBadge, greenBadge, redBadge, blueBadge, stdBadge];
-  // // let badgesList = [zBadge, ];
-  //
-  // chrome.storage.sync.set({[userId]: badgesList},function(){
-  //    console.log("object stored");
-  // });
-
-
   let siteThemeSettings = window.localStorage['pkb_theme'];
   let darkTheme = false;
   if (siteThemeSettings && siteThemeSettings['d']) {
