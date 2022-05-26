@@ -1,6 +1,6 @@
 import BadgesList from "./badgesList.js";
 import Badge from "./badge.js";
-import {generateUUID, getUserNodes} from "./common_functions.js";
+import {generateUUID, getUserNodes} from "./commonFunctions.js";
 import {congratsBadgeMakerPlaceholder, BadgeMakerPlaceholders} from "./const.js";
 import {addBadgesToUser, removeBadgeFromNode, removeBadgePanelsFromNode} from "./layoutFunctionsForBadges.js";
 

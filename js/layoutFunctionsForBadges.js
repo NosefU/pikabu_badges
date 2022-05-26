@@ -2,7 +2,7 @@
  * Функции бейджей для работы с DOM-деревом
  */
 
-import {getUserId, getUserNodes} from "./common_functions.js";
+import {getUserId, getUserNodes} from "./commonFunctions.js";
 import BadgesList from "./badgesList.js";
 
 

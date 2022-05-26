@@ -1,4 +1,4 @@
-import {getUserId} from "./common_functions.js";
+import {getUserId} from "./commonFunctions.js";
 import {getBadgeMakerPanel} from "./badgeMakerPanel.js";
 
 

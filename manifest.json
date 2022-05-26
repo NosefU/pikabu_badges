@@ -10,13 +10,13 @@
   "content_scripts": [
     {
         "matches": ["https://pikabu.ru/*"],
-        "js": ["content_init.js"],
+        "js": ["contentInit.js"],
         "css": ["css/content.css", "css/fontawesome.min.css", "css/solid.css"]
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": [ "content_main.js", "js/*", "css/*", "webfonts/*"],
+      "resources": [ "contentMain.js", "js/*", "css/*", "webfonts/*"],
       "matches": ["https://pikabu.ru/*" ]
     }
   ]
