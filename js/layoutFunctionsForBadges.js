@@ -118,7 +118,7 @@ export function removeBadgePanelsFromNode(node, userIdFilter = null) {
   }
   for (let badgePanel of badgePanels) {
     badgePanel.remove();
-    console.debug("Badges removed");
+    console.debug("Badges panel removed");
   }
 }
 

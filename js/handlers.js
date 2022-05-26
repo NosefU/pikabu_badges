@@ -103,7 +103,7 @@ export function handleAddBadgeButtonClick(event) {
   let badge = new Badge(userId, text, color, generateUUID());
   chrome.storage.sync.get(userId, function(data) {
     if (chrome.runtime.error) {
-      console.log("Runtime error");
+      console.error("Runtime error");
       return;
     }
 
@@ -111,7 +111,7 @@ export function handleAddBadgeButtonClick(event) {
     badgesList.unshift(badge);
 
     chrome.storage.sync.set(badgesList.dto, function () {
-      console.log("object stored");
+      console.debug(`${userId} badges updated`);
     });
 
     // блоки с бейджами надо удалять и добавлять по новой для того, чтобы не поехала вёрстка
