@@ -230,6 +230,33 @@ input.badge::placeholder {
 	font-size: 1em;
 }
 
+
+/* мигалка для пасхалки */
+.special {
+	background-color: black;
+	border-color: black;
+	color: white;
+	animation: blinker 1s linear infinite;
+}
+
+input.special {
+	font-family: monospace;
+}
+
+input.special::placeholder {
+	font-weight: 700;
+	font-size: 1em;
+	color: white;
+}
+
+@keyframes blinker {
+	50% {
+		background-color: red;
+		border-color: red;
+	}
+}
+
+
 .badge-blue::placeholder,
 .badge-gray::placeholder {
 	color: var(--badge-color-light-gray);

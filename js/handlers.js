@@ -1,7 +1,7 @@
 import BadgesList from "./badgesList.js";
 import Badge from "./badge.js";
 import {generateUUID, getUserNodes} from "./common_functions.js";
-import {inputPlaceholders} from "./const.js";
+import {congratsBadgeMakerPlaceholder, BadgeMakerPlaceholders} from "./const.js";
 import {addBadgesToUser, removeBadgeFromNode, removeBadgePanelsFromNode} from "./layoutFunctionsForBadges.js";
 
 
@@ -64,6 +64,15 @@ export function handleColorButtonClick(event) {
  * @param event
  */
 export function handleAddBadgeButtonClick(event) {
+  let addBadgePanel = event.target.closest(".add-badge-panel");
+  let badgeTextInput = addBadgePanel.querySelector("input");
+  let addBadgeButton = addBadgePanel.querySelector(".add-badge-button");
+
+  // пасхалка: сбрасываем стили
+  badgeTextInput.classList.remove("special");
+  addBadgeButton.classList.remove("special");
+
+
   // отсеиваем все нажатия кроме enter
   if (event.type === 'keypress' && event.key !== 'Enter') {
     // TODO реализовать сохранение временного бейджа, чтобы при случайном пропадании попапа
@@ -71,15 +80,22 @@ export function handleAddBadgeButtonClick(event) {
     return;
   }
 
-  let addBadgePanel = event.target.closest(".add-badge-panel");
-  let badgeTextInput = addBadgePanel.querySelector("input");
   let userId = badgeTextInput.dataset.belongsTo;
   let color = badgeTextInput.dataset.badgeColor;
   let text = badgeTextInput.value;
 
   // если текст пустой, то ругаемся
   if (badgeTextInput.value === '') {
-    badgeTextInput.placeholder = inputPlaceholders[1];
+    let currentPlaceholder = badgeTextInput.dataset.currentPlaceholder ?? 0;
+    currentPlaceholder = (Number(currentPlaceholder) + 1) % BadgeMakerPlaceholders.length;
+    badgeTextInput.placeholder = BadgeMakerPlaceholders[currentPlaceholder];
+    badgeTextInput.dataset.currentPlaceholder = currentPlaceholder.toString(10);
+
+    // пасхалка: когда доберёмся до нужной строки - включим чёрно-красное мигание
+    if ([13, 14, 15, 16].includes(currentPlaceholder)) {
+      badgeTextInput.classList.add("special");
+      addBadgeButton.classList.add("special");
+    }
     return;
   }
 
@@ -110,7 +126,8 @@ export function handleAddBadgeButtonClick(event) {
 
   // уведомляем пользователя о том, что бейдж добавлен
   badgeTextInput.value = '';
-  badgeTextInput.placeholder = "Заметка добавлена";
-  setTimeout(() => { badgeTextInput.placeholder = inputPlaceholders[0]; }, 1500);
+  badgeTextInput.dataset.currentPlaceholder = "0";
+  badgeTextInput.placeholder = congratsBadgeMakerPlaceholder;
+  setTimeout(() => { badgeTextInput.placeholder = BadgeMakerPlaceholders[0]; }, 1500);
 }
 
