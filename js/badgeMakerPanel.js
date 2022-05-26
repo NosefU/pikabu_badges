@@ -1,5 +1,5 @@
 import {handleColorButtonClick, handleAddBadgeButtonClick} from "./handlers.js";
-import {buttonColors, defaultColor, BadgeMakerPlaceholders} from "./const.js";
+import {buttonColors, defaultColor, BadgeMakerPlaceholders, badgeTextMaxLength} from "./const.js";
 
 
 /**
@@ -19,6 +19,7 @@ export function getBadgeMakerPanel(userId) {
   badgeTextInput.dataset.badgeColor = defaultColor;
   badgeTextInput.dataset.belongsTo = userId;
   badgeTextInput.placeholder = BadgeMakerPlaceholders[0];
+  badgeTextInput.maxLength = badgeTextMaxLength;
   badgeTextInput.addEventListener("keypress", handleAddBadgeButtonClick);
 
   // создаём кнопку добавления заметки

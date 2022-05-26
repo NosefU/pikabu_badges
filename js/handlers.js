@@ -1,7 +1,7 @@
 import BadgesList from "./badgesList.js";
 import Badge from "./badge.js";
 import {generateUUID, getUserNodes} from "./commonFunctions.js";
-import {congratsBadgeMakerPlaceholder, BadgeMakerPlaceholders} from "./const.js";
+import {congratsBadgeMakerPlaceholder, BadgeMakerPlaceholders, badgeTextMaxLength} from "./const.js";
 import {addBadgesToUser, removeBadgeFromNode, removeBadgePanelsFromNode} from "./layoutFunctionsForBadges.js";
 
 
@@ -82,7 +82,7 @@ export function handleAddBadgeButtonClick(event) {
 
   let userId = badgeTextInput.dataset.belongsTo;
   let color = badgeTextInput.dataset.badgeColor;
-  let text = badgeTextInput.value;
+  let text = badgeTextInput.value.slice(0, badgeTextMaxLength);
 
   // если текст пустой, то ругаемся
   if (badgeTextInput.value === '') {

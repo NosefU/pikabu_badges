@@ -23,3 +23,4 @@ export const congratsBadgeMakerPlaceholder = "Заметка добавлена"
 
 export const defaultColor = "light-gray";
 export const buttonColors = ["light-gray", "blue", "red", "green", "yellow", "gray"];
+export const badgeTextMaxLength = 35;
